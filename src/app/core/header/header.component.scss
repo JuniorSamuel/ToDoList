@@ -1,6 +1,8 @@
+@import '../../../variable.scss';
+
 nav{
 
-    background-color: #FF5733;
+    background-color: $primario;
     padding: 1rem;
 
     h1{

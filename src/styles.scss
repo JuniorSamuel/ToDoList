@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./variable.scss";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+input, select, textarea{
+       
+    border: none;
+    border-bottom-style: solid;
+    border-color: #b3b3b3;
+    border-bottom-width: thin;
+    width: 100%;
+    padding: 1px 2px;
+    &:focus{
+        color: $primario;
+        border-color: $primario;
+        outline: none;
+    }
+    &:hover{
+        label{
+            display: block;
+        }
+    }
+}
+
+input, select{
+    height: 24px;
+}
+
+button{
+    outline: none;
+}
+
+.btn-add-p{
+    outline: none;
+    background-color: $primario;
+    color: white;
+}
+.btn-close-p{
+    border-color: $primario;
+    color: $primario;
+}

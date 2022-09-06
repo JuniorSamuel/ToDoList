@@ -1,37 +1,63 @@
 <main class="container">
-
-   <div class="div-sec div-search">
-        <div class="input-group">
-            <label class="input-group-text" for="input-buscar">Search:</label>
-            <input type="text" name="input-buscar" id="input-buscar" placeholder="New task" aria-describedby="select-priotity">
-            <label class="input-group-text" for="input-buscar">Priority:</label>
-            <select name="select-priotity," id="select-priotity" >
-                <option value="5">all</option>
-                <option value="0">Low</option>
-                <option value="1">Normal</option>
-                <option value="2">Middle</option>
-                <option value="3">High</option>
-            </select>
+    <div class="div-sec div-search">
+        <div class="input-group align-content-center">
+            <div class="col-4 col-md-6">
+                <label class="input-group-text" for="input-buscar">Search:</label>
+                <input type="text" name="input-buscar" id="input-buscar" placeholder="Search task"
+                    aria-describedby="select-priotity" [(ngModel)]="searchField">
+            </div>
+            <div class="col-4">
+                <label class="input-group-text" for="select-priotity">Priority:</label>
+                <select name="select-priotity," id="select-priotity" [(ngModel)]="searchPriority">
+                    <option value="all">Priority: All</option>
+                    <option value="low">Priority: Low</option>
+                    <option value="normal">Priority: Normal</option>
+                    <option value="middle">Priority: Middle</option>
+                    <option value="high">Priority: High</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <label class="input-group-text" for="select-Ready">Ready:</label>
+                <select name="select-priotity," id="select-Ready" [(ngModel)]="searchReady">
+                    <option [value]= -1> Ready: All</option>
+                    <option [value]= 0> Ready: True</option>
+                    <option [value]= 1> Ready: False</option>
+                </select>
+            </div>
         </div>
-       <button class="btn "> <i class="bi bi-plus-circle"></i></button>
-   </div>
+        <button class="btn" (click)="dialogAdd()"> <i class="bi bi-plus-circle"></i></button>
+    </div>
 
-   <div class="div-sec div-table">
-       <table >
-           <thead>
-               <tr>
-                   <th class="col-g col-num">Num</th>
-                   <th class="col-g col-titulo">Titulo</th>
-                   <th class="col-g col-opt">Option</th>
-               </tr>
-           </thead>
-           <tbody>
-               <tr *ngFor="let task of listTask; index as i">
-                   <td class="col-g col-num">{{i}}</td>
-                   <td class="col-g col-titulo"> {{task.title}}</td>
-                   <td class="col-g col-opt">contenido</td>
-               </tr>
-           </tbody>
-       </table>
-   </div>
+    <div class="div-sec div-table">
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-g col-num">Num</th>
+                    <th class="col-g col-titulo">Titulo</th>
+                    <th class="col-g col-priority">Priority</th>
+                    <th class="col-g col-opt">Option</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let task of listTask | filter: searchField: searchPriority: listTask.length: searchReady; index as i">
+                    <td class="col-g" [ngClass]="{'ready':task.ready, 'col-num': !task.ready}">{{i + 1}}</td>
+                    <td class="col-g col-titulo" [ngClass]="{'ready':task.ready}"> {{task.title}}</td>
+                    <td class="col-g col-priority" [ngClass]="{'ready':task.ready}"> {{task.priority}}</td>
+                    <td class="col-g col-opt"> 
+                        <div class="input-group">
+                            <button class="btn btn-close-p"  (click)="changeReady(task)"> <i class="bi" [ngClass]="{'bi-check': !task.ready, 'bi-dash':task.ready}"></i></button>
+                            <button class="btn btn-close-p"  (click)="dialogModify(task)"> <i class="bi bi-pencil"></i></button>
+                            <button class="btn btn-close-p"  (click)="dialogDelect(task)"> <i class="bi bi-trash"></i></button>
+                            <button class="btn btn-add-p"  (click)="dialogView(task)"> <i class="bi bi-eye"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4"> Total: {{listTask.length}}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </main>

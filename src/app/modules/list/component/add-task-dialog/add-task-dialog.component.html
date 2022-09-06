@@ -1,0 +1,27 @@
+<h2> {{title}} Task</h2>
+<mat-dialog-content>
+    <form [formGroup]="formTask">
+        <div class="row my-3">
+            <div class="col-12 col-md-6 mb-3">
+                <label for="input-task" class="form-label">Task</label>
+                <input type="text" name="input-task" id="input-task" placeholder="Title tash" formControlName="title"></div>
+
+            <div class="col-12 col-md-6 mb-3">
+                <label for="select-priority" class="form-label">Priority</label>
+                <select name="select-priority" id="select-priority" formControlName="priority">
+                    <option value="low">Low</option>
+                    <option value="normal">Normal</option>
+                    <option value="middle"> Middle</option>
+                    <option value="high"> High</option>
+                </select>
+            </div>
+            <div class="col-12 mb-3">
+                <textarea name="textarea-description" id="textarea-description" cols="30" rows="10" placeholder="Description" formControlName="description"></textarea>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button class="btn btn-close-p mx-2" mat-dialog-close="">Close</button>
+    <button class="btn btn-add-p" (click)="registry()">{{title}}</button>
+</mat-dialog-actions>

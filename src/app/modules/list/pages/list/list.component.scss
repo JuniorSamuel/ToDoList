@@ -1,3 +1,4 @@
+@import "../../../../../variable.scss";
 
 .div-sec{
     margin: .7rem;
@@ -9,28 +10,8 @@
     display: flex;
     justify-content: space-between;
 
-
-    input, select{
-       
-        border: none;
-        border-bottom-style: solid;
-        border-color: #b3b3b3;
-        border-bottom-width: thin;
-        width: 100px;
-        &:focus{
-            color: #FF5733;
-            border-color: #FF5733;
-            outline: none;
-        }
-        &:hover{
-            label{
-                display: block;
-            }
-        }
-    }
-
     button, label{
-        background-color: #FF5733;
+        background-color: $primario;
         color: white;
     }
 
@@ -44,23 +25,44 @@
     padding: .5rem;
 
     table{
+        width: 100%;
         thead > tr{
             border-bottom-width: thin;
+            border-bottom-color: $primario;
+            font-size: medium;
+
+        }
+
+        tfoot{
+            font-size: medium;
+            color: white;
+            background-color: $primario;
         }
         .col-g{ 
             padding-left: 5px;
             padding-right: 5px;}
         .col-num{
-          color: #FF5733;
-          border-right: #FF5733;
+          color: $primario;
+          border-right: $primario;
           border-style: solid;
           border-right-width: thin;
+
+          width: 2rem;
         }
         .col-titulo{
-            width: 100%;
+        
+        }
+
+        .col-priority{
+            width: 5rem;
         }
         .col-opt{
-            width: 2rem;
+            width: 11rem;
         }
     }
+}
+
+.ready{
+    background-color: rgb(48, 104, 48);
+    color: white;
 }
